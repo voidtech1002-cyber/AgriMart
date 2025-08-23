@@ -9,6 +9,7 @@ const cropSchema = new mongoose.Schema(
   {
     cropName: { type: String, required: true },
     cropType: { type: String, required: true },
+    userId: { type: String, required: true },
     cultivationSeason: { type: String },
     fertilizerUsed: { type: String },
     pesticidesUsed: { type: String },
