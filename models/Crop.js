@@ -10,8 +10,9 @@ const cropSchema = new mongoose.Schema(
     cropName: { type: String },          // Crop Name *
     type: { type: String },                              // Type
     variety: { type: String },                           // Variety
-    quantityKg: { type: Number },                        // Quantity (kg)
-    qualityGrade: { type: String },                      // Quality Grade
+    quantity: { type: Number },                        // Quantity (kg)
+    qualityGrade: { type: String },
+    userId: { type:String }// Quality Grade
     startingPrice: { type: Number },                     // Starting Price
     location: { type: String },                          // Location
     description: { type: String },                       // Description
@@ -29,5 +30,6 @@ const cropSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Crop", cropSchema);
+
 
 
