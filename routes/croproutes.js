@@ -5,6 +5,7 @@ const upload = require("../middleware/multer");
 
 router.post("/", upload.array("files", 5), cropController.createCrop);
 router.get("/", cropController.getAllCrops);
-router.get("/:id", cropController.getCropById);
+router.get("/:userId", cropController.getAllCropsByUser);
+
 
 module.exports = router;
