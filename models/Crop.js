@@ -7,19 +7,17 @@ const fileSchema = new mongoose.Schema({
 
 const cropSchema = new mongoose.Schema(
   {
-    cropName: { type: String, required: true },
-    cropType: { type: String, required: true },
-    userId: { type: String, required: true },
-    cultivationSeason: { type: String },
-    fertilizerUsed: { type: String },
-    pesticidesUsed: { type: String },
-    phone: { type: String },
-    basePrice: { type: Number, required: true },
-    minimumExpectedPrice: { type: Number },
-    maximumExpectedPrice: { type: Number },
-    marketRegion: { type: String },
-    bidTimeLimit: { type: Date },
-    healthScore: { type: Number, min: 0, max: 100 },
+    cropName: { type: String, required: true },          // Crop Name *
+    type: { type: String },                              // Type
+    variety: { type: String },                           // Variety
+    quantityKg: { type: Number },                        // Quantity (kg)
+    qualityGrade: { type: String },                      // Quality Grade
+    startingPrice: { type: Number },                     // Starting Price
+    location: { type: String },                          // Location
+    description: { type: String },                       // Description
+    farmerName: { type: String },                        // Farmer Name
+    farmerContact: { type: String },                     // Farmer Contact
+    healthScore: { type: Number, min: 0, max: 100 }, 
     files: [fileSchema],
     status: { 
       type: String, 
@@ -31,3 +29,4 @@ const cropSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Crop", cropSchema);
+
