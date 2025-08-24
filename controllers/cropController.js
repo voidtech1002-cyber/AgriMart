@@ -39,7 +39,7 @@ exports.getAllCrops = async (req, res) => {
 // Get all crops for a specific user
 exports.getAllCropsByUser = async (req, res) => {
   try {
-    const { userId } = req.query; // get userId from query params
+    const { userId } = req.params; // get userId from query params
 
     let query = {};
     if (userId) {
@@ -50,6 +50,32 @@ exports.getAllCropsByUser = async (req, res) => {
     res.json({ success: true, data: crops });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+exports.updateCropByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const updateData = req.body;
+    // console.log("update request called")
+    // Find and update crop
+    const updatedCrop = await Crop.findOneAndUpdate(
+      { userId }, // filter by userId
+      { $set: updateData }, // update fields
+      { new: true } // return updated document
+    );
+
+    if (!updatedCrop) {
+      return res.status(404).json({ message: "Crop not found for this userId" });
+    }
+
+    res.status(200).json({
+      message: "Crop updated successfully",
+      crop: updatedCrop,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating crop", error: error.message });
   }
 };
 
