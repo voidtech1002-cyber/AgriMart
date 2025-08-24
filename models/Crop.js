@@ -12,7 +12,7 @@ const cropSchema = new mongoose.Schema(
     variety: { type: String },                           // Variety
     quantity: { type: Number },                        // Quantity (kg)
     qualityGrade: { type: String },
-    userId: { type:String }// Quality Grade
+    userId: { type:String },                             // Quality Grade
     startingPrice: { type: Number },                     // Starting Price
     location: { type: String },                          // Location
     description: { type: String },                       // Description
@@ -30,6 +30,7 @@ const cropSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Crop", cropSchema);
+
 
 
 
