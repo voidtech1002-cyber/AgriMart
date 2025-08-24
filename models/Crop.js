@@ -7,7 +7,7 @@ const fileSchema = new mongoose.Schema({
 
 const cropSchema = new mongoose.Schema(
   {
-    cropName: { type: String, required: true },          // Crop Name *
+    cropName: { type: String },          // Crop Name *
     type: { type: String },                              // Type
     variety: { type: String },                           // Variety
     quantityKg: { type: Number },                        // Quantity (kg)
@@ -29,4 +29,5 @@ const cropSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Crop", cropSchema);
+
 
