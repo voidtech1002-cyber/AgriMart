@@ -21,6 +21,11 @@ const cropSchema = new mongoose.Schema(
     bidTimeLimit: { type: Date },
     healthScore: { type: Number, min: 0, max: 100 },
     files: [fileSchema],
+    status: { 
+      type: String, 
+      enum: ["success", "failure", "pending"], 
+      default: "success" 
+    }
   },
   { timestamps: true }
 );
