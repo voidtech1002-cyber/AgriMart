@@ -11,7 +11,7 @@ exports.createCrop = async (req, res) => {
 
     const fileData = req.files.map((file) => ({
       public_id: file.filename, // Cloudinary assigns this
-      url: file.path,           // secure URL
+      url: file.path, // secure URL
     }));
 
     const crop = new Crop({
@@ -36,20 +36,20 @@ exports.getAllCrops = async (req, res) => {
   }
 };
 
-exports.getCropById = async (req, res) => {
+// Get all crops for a specific user
+exports.getAllCropsByUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const crop = await Crop.findById(id);
+    const { userId } = req.query; // get userId from query params
 
-    if (!crop) {
-      return res.status(404).json({
-        success: false,
-        message: "Crop not found",
-      });
+    let query = {};
+    if (userId) {
+      query.userId = userId;
     }
 
-    res.json({ success: true, data: crop });
+    const crops = await Crop.find(query).sort({ createdAt: -1 });
+    res.json({ success: true, data: crops });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
